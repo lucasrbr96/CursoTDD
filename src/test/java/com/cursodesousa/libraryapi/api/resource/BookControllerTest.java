@@ -1,11 +1,14 @@
 package com.cursodesousa.libraryapi.api.resource;
 
 import com.cursodesousa.libraryapi.api.dto.BookDTO;
+import com.cursodesousa.libraryapi.model.entity.Book;
 import com.cursodesousa.libraryapi.service.BookService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.BDDMockito;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -17,6 +20,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -40,19 +44,25 @@ public class BookControllerTest {
     @DisplayName("Deve criar um book com sucesso")
     public void createBookTest() throws  Exception{
 
+        //criação do objeto
+        BookDTO dto = BookDTO.builder().author("Arthur").title("As aventuras").isbn("001").build();
+        //criação do objeto salvo
+        Book savedBook = Book.builder().id(10l).author("Arthur").title("As aventuras").isbn("001").build();
+        //chamada do service passando o book e esperando o book salvo
+        BDDMockito.given(service.save(Mockito.any(Book.class)))
+                .willReturn(savedBook);
 
-        BookDTO dto = BookDTO.builder()
-                .author("Arthur")
-                .title("As aventuras")
-                .isbn("001")
-                .build();
+        //criando o json para a requisição faker
+        String json = new ObjectMapper().writeValueAsString(dto);
 
-        String json = new ObjectMapper().writeValueAsString(null);
-        MockHttpServletRequestBuilder request = MockMvcRequestBuilders.post(BOOK_API)
+        //criando a requisição em si
+        MockHttpServletRequestBuilder request = MockMvcRequestBuilders
+                .post(BOOK_API)
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON)
-                .content("");
+                .content(json);
 
+        //verificação da simulação
         mvc.perform(request)
                 .andExpect(status().isCreated())
                 .andExpect(jsonPath("id").isNotEmpty())

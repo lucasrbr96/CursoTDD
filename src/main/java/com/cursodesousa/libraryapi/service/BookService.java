@@ -1,4 +1,7 @@
 package com.cursodesousa.libraryapi.service;
 
-public class BookService {
+import com.cursodesousa.libraryapi.model.entity.Book;
+
+public interface BookService {
+    Book save(Book any);
 }
