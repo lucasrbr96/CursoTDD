@@ -2,6 +2,7 @@ package com.cursodesousa.libraryapi.api.resource;
 
 import com.cursodesousa.libraryapi.api.dto.BookDTO;
 import com.cursodesousa.libraryapi.api.exception.ApiErrors;
+import com.cursodesousa.libraryapi.exception.BusinessException;
 import com.cursodesousa.libraryapi.model.entity.Book;
 import com.cursodesousa.libraryapi.service.BookService;
 import org.modelmapper.ModelMapper;
@@ -46,5 +47,10 @@ public class BookController {
         List<ObjectError> allErrors = bindingResult.getAllErrors();
 
         return new ApiErrors(bindingResult);
+    }
+    @ExceptionHandler(BusinessException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ApiErrors handleBusinessException(BusinessException ex){
+        return new ApiErrors(ex);
     }
 }
