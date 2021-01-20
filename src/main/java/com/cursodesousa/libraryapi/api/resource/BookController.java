@@ -55,6 +55,18 @@ public class BookController {
     service.delete(book);
     }
 
+    @PutMapping("{id}")
+    public BookDTO update(@PathVariable long id, BookDTO dto){
+        return  service.getById(id).map(book -> {
+            book.setAuthor(dto.getAuthor());
+            book.setTitle(dto.getTitle());
+            book = service.update(book);
+
+            return  model.map(book, BookDTO.class);
+        }).orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND));
+
+    }
+
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)

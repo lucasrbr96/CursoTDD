@@ -193,5 +193,59 @@ public class BookControllerTest {
         mvc.perform(request).andExpect(status().isNotFound());
     }
 
+    @Test
+    @DisplayName("Deve atualizar um livro")
+    public  void updateBookTest() throws Exception{
+        Long id = 1L;
+        String json = new ObjectMapper().writeValueAsString(createBook());
+
+        Book updatingBook = Book.builder().id(1L)
+                .title("some title")
+                .author("some author")
+                .isbn("321").build();
+
+        BDDMockito.given(service.getById(id))
+                .willReturn(Optional.of(
+                        updatingBook));
+
+        BDDMockito.given(service.update(updatingBook))
+                .willReturn(Book.builder()
+                        .id(id)
+                        .author("Arthur")
+                        .title("As aventuras")
+                        .isbn("321").build());
+
+        MockHttpServletRequestBuilder request = MockMvcRequestBuilders
+                .put(BOOK_API.concat("/"+1))
+                .content(json)
+                .accept(MediaType.APPLICATION_JSON)
+                .contentType(MediaType.APPLICATION_JSON);
+
+        mvc.perform(request).andExpect(status().isOk())
+                .andExpect(jsonPath("id").value(id))
+                .andExpect(jsonPath("title").value(createBook().getTitle()))
+                .andExpect(jsonPath("author").value(createBook().getAuthor()))
+                .andExpect(jsonPath("isbn").value("321"));;
+    }
+
+    @Test
+    @DisplayName("Deve atualizar um livro")
+    public  void updateInexistentBookTest() throws Exception{
+        Long id = 1L;
+        String json = new ObjectMapper().writeValueAsString(createBook());
+
+        BDDMockito.given(service.getById(Mockito.anyLong()))
+                .willReturn(Optional.empty());
+
+        MockHttpServletRequestBuilder request = MockMvcRequestBuilders
+                .put(BOOK_API.concat("/"+1))
+                .content(json)
+                .accept(MediaType.APPLICATION_JSON)
+                .contentType(MediaType.APPLICATION_JSON);
+
+        mvc.perform(request).andExpect(status().isNotFound());
+
+    }
+
 
 }
