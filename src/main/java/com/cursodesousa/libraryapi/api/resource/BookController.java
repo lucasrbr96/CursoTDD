@@ -7,6 +7,10 @@ import com.cursodesousa.libraryapi.model.entity.Book;
 import com.cursodesousa.libraryapi.service.BookService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
@@ -16,6 +20,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @RestController
@@ -65,6 +70,16 @@ public class BookController {
             return  model.map(book, BookDTO.class);
         }).orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND));
 
+    }
+
+    @GetMapping
+    public Page<BookDTO> find(BookDTO dto, Pageable pageableRequest){
+        Book book = model.map(dto,Book.class);
+        Page<Book> result = service.find(book, pageableRequest);
+        List<BookDTO> list = result.getContent().stream()
+                .map(entity -> model.map(entity, BookDTO.class))
+                .collect(Collectors.toList());
+        return  new PageImpl<BookDTO>(list, pageableRequest, result.getTotalElements());
     }
 
 

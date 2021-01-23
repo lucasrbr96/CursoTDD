@@ -10,11 +10,15 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.BDDMockito;
+import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
@@ -24,6 +28,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 
+import java.util.Arrays;
 import java.util.Optional;
 import java.util.regex.Matcher;
 
@@ -244,6 +249,42 @@ public class BookControllerTest {
                 .contentType(MediaType.APPLICATION_JSON);
 
         mvc.perform(request).andExpect(status().isNotFound());
+
+    }
+
+    @Test
+    @DisplayName("Deve filtrar livros")
+    public void findBooksTest() throws Exception{
+        Long id = 1L;
+
+        Book book = Book.builder()
+                .id(id)
+                .title(createBook().getTitle())
+                .isbn(createBook().getIsbn())
+                .author(createBook().getAuthor())
+                .build();
+
+        BDDMockito.given(service.find(Mockito.any(Book.class),
+                Mockito.any(Pageable.class)))
+                .willReturn(new PageImpl<Book>(Arrays.asList(book),
+                        PageRequest.of(0,100),1));
+
+        String queryString = String.format("?title=%s&author=%s&page=0&size=100",
+                book.getTitle(),book.getAuthor());
+
+        MockHttpServletRequestBuilder request = MockMvcRequestBuilders
+                                .get(BOOK_API.concat(queryString))
+                                .accept(MediaType.APPLICATION_JSON);
+
+        mvc.perform(request)
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("content",Matchers.hasSize(1)))
+                .andExpect(jsonPath("totalElements").value(1))
+                .andExpect(jsonPath("pageable.pageSize").value(100))
+                .andExpect(jsonPath("pageable.pageNumber").value(0));
+
+
+
 
     }
 
