@@ -1,6 +1,7 @@
 package com.cursodesousa.libraryapi.api.resource;
 
 import com.cursodesousa.libraryapi.api.dto.LoanDTO;
+import com.cursodesousa.libraryapi.exception.BusinessException;
 import com.cursodesousa.libraryapi.model.entity.Book;
 import com.cursodesousa.libraryapi.model.entity.Loan;
 import com.cursodesousa.libraryapi.service.BookService;
@@ -93,7 +94,35 @@ public class LoanControllerTest {
         mvc.perform(request)
                 .andExpect(status().isBadRequest())
                 .andExpect(jsonPath("errors", Matchers.hasSize(1)))
-                .andExpect(jsonPath("errors[0]").value("book not found for passed isbn"));
+                .andExpect(jsonPath("errors[0]").value("400 BAD_REQUEST \"book not found for passed isbn\""));
+
+
+    }
+
+    @Test
+    @DisplayName("Deve retornar um erro ao fazer emprestimo de um livro emprestado")
+    public void loanedBookErrorOnCreateLoanTest() throws Exception{
+
+        LoanDTO dto = LoanDTO.builder().isbn("123").customer("Fulano").build();
+        String json = new ObjectMapper().writeValueAsString(dto);
+
+        Book book = Book.builder().isbn("123").id(1L).build();
+        BDDMockito.given(bookService.getBookByIsbn("123"))
+                .willReturn(Optional.of(book));
+
+        BDDMockito.given(loanService.save(Mockito.any(Loan.class)))
+                .willThrow(new BusinessException("Book already loaned"));
+
+
+        MockHttpServletRequestBuilder request = MockMvcRequestBuilders.post(LOAN_API)
+                .accept(MediaType.APPLICATION_JSON)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(json);
+
+        mvc.perform(request)
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("errors", Matchers.hasSize(1)))
+                .andExpect(jsonPath("errors[0]").value("Book already loaned"));
 
 
     }
