@@ -1,6 +1,7 @@
 package com.cursodesousa.libraryapi.api.resource;
 
 import com.cursodesousa.libraryapi.api.dto.LoanDTO;
+import com.cursodesousa.libraryapi.api.dto.ReturnedLoanDTO;
 import com.cursodesousa.libraryapi.model.entity.Book;
 import com.cursodesousa.libraryapi.model.entity.Loan;
 import com.cursodesousa.libraryapi.service.BookService;
@@ -36,6 +37,13 @@ public class LoanController {
         entity = service.save(entity);
 
         return entity.getId();
+    }
+
+    @PatchMapping("{id}")
+    public void returnBook(@PathVariable Long id, @RequestBody ReturnedLoanDTO dto){
+        Loan loan = service.getById(id).orElseThrow(() ->new ResponseStatusException(HttpStatus.NOT_FOUND));
+        loan.setReturned(dto.getReturned());
+        service.update(loan);
     }
 
 

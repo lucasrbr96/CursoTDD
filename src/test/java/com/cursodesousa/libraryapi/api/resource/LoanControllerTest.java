@@ -1,6 +1,7 @@
 package com.cursodesousa.libraryapi.api.resource;
 
 import com.cursodesousa.libraryapi.api.dto.LoanDTO;
+import com.cursodesousa.libraryapi.api.dto.ReturnedLoanDTO;
 import com.cursodesousa.libraryapi.exception.BusinessException;
 import com.cursodesousa.libraryapi.model.entity.Book;
 import com.cursodesousa.libraryapi.model.entity.Loan;
@@ -27,6 +28,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import java.time.LocalDate;
 import java.util.Optional;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @ExtendWith(SpringExtension.class)
@@ -123,6 +125,42 @@ public class LoanControllerTest {
                 .andExpect(status().isBadRequest())
                 .andExpect(jsonPath("errors", Matchers.hasSize(1)))
                 .andExpect(jsonPath("errors[0]").value("Book already loaned"));
+
+    }
+
+    @Test
+    @DisplayName("Deve retornar um livro")
+    public void returnBookTest() throws Exception{
+        ReturnedLoanDTO dto = ReturnedLoanDTO.builder().returned(true).build();
+        String json = new ObjectMapper().writeValueAsString(dto);
+
+        Loan loan = Loan.builder().id(1L).build();
+        BDDMockito.given(loanService.getById(Mockito.anyLong()))
+                .willReturn(Optional.of(loan));
+
+        mvc.perform(
+                patch(LOAN_API.concat("/1")).accept(MediaType.APPLICATION_JSON)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(json)
+        ).andExpect(status().isOk());
+
+        Mockito.verify(loanService, Mockito.times(1)).update(loan);
+    }
+
+    @Test
+    @DisplayName("Deve retornar 404 ao tentar um livro inexistente")
+    public void returnInexistentBookTest() throws Exception{
+        ReturnedLoanDTO dto = ReturnedLoanDTO.builder().returned(true).build();
+        String json = new ObjectMapper().writeValueAsString(dto);
+
+        BDDMockito.given(loanService.getById(Mockito.anyLong()))
+                .willReturn(Optional.empty());
+
+        mvc.perform(
+                patch(LOAN_API.concat("/1")).accept(MediaType.APPLICATION_JSON)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(json)
+        ).andExpect(status().isNotFound());
 
 
     }
