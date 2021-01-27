@@ -5,13 +5,13 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class LoanDTO {
+@Data
+@Builder
+public class LoanFilterDTO {
+    private Long id;
     private String isbn;
     private String customer;
     private BookDTO book;
-
 }
