@@ -2,9 +2,5 @@ language: java
 jdk:
   - oraclejdk9
 dist: trusty
-addons:
-  apt:
-    packages:
-      - oracle-java9-installer
 before_install:
   - chmod +x mvnw
