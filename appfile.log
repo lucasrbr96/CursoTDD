@@ -1,0 +1,36 @@
+2021-01-28 19:00:51.193  INFO 7284 --- [restartedMain] c.c.libraryapi.LibraryApiApplication     : Starting LibraryApiApplication using Java 14.0.2 on DESKTOP-RIFNJPK with PID 7284 (C:\projetos\library-api\target\classes started by Pc in C:\projetos\library-api)
+2021-01-28 19:00:51.197  INFO 7284 --- [restartedMain] c.c.libraryapi.LibraryApiApplication     : No active profile set, falling back to default profiles: default
+2021-01-28 19:00:51.308  INFO 7284 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2021-01-28 19:00:51.309  INFO 7284 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2021-01-28 19:00:53.942  INFO 7284 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-01-28 19:00:54.041  INFO 7284 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 84 ms. Found 2 JPA repository interfaces.
+2021-01-28 19:00:55.731  INFO 7284 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-01-28 19:00:55.776  INFO 7284 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-01-28 19:00:55.781  INFO 7284 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.41]
+2021-01-28 19:00:56.065  INFO 7284 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-01-28 19:00:56.067  INFO 7284 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 4756 ms
+2021-01-28 19:00:56.385  INFO 7284 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-01-28 19:00:56.700  INFO 7284 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-01-28 19:00:56.711  INFO 7284 --- [restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:2c4d672f-089b-4180-9647-c8d787ebe5a2'
+2021-01-28 19:00:57.030  INFO 7284 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-01-28 19:00:57.106  INFO 7284 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.25.Final
+2021-01-28 19:00:57.287  INFO 7284 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2021-01-28 19:00:57.504  INFO 7284 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2021-01-28 19:00:58.357  INFO 7284 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-01-28 19:00:58.367  INFO 7284 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-01-28 19:00:58.390  INFO 7284 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2021-01-28 19:00:59.490  WARN 7284 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-01-28 19:00:59.880  INFO 7284 --- [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 14 endpoint(s) beneath base path '/actuator'
+2021-01-28 19:01:00.139  INFO 7284 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-01-28 19:01:00.429  INFO 7284 --- [restartedMain] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
+2021-01-28 19:01:00.543  INFO 7284 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2021-01-28 19:01:00.544  INFO 7284 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2021-01-28 19:01:00.569  INFO 7284 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2021-01-28 19:01:00.584  INFO 7284 --- [restartedMain] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2021-01-28 19:01:00.867  INFO 7284 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: createUsingPOST_1
+2021-01-28 19:01:00.877  INFO 7284 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: findUsingGET_1
+2021-01-28 19:01:00.926  INFO 7284 --- [restartedMain] c.c.libraryapi.LibraryApiApplication     : Started LibraryApiApplication in 10.607 seconds (JVM running for 11.597)
+2021-01-28 19:01:08.381  INFO 7284 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-01-28 19:01:08.382  INFO 7284 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-01-28 19:01:08.384  INFO 7284 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2021-01-28 19:01:24.471  INFO 7284 --- [http-nio-8080-exec-3] c.c.l.api.resource.BookController        :  creating a book for isbn 123
