@@ -4371,3 +4371,45 @@ Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No q
 	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791) ~[spring-beans-5.3.2.jar:5.3.2]
 	... 87 common frames omitted
 
+2021-01-30 10:41:00.173  INFO 10576 --- [main] c.c.l.api.resource.BookControllerTest    : Starting BookControllerTest using Java 14.0.2 on DESKTOP-RIFNJPK with PID 10576 (started by Pc in C:\projetos\library-api)
+2021-01-30 10:41:00.175  INFO 10576 --- [main] c.c.l.api.resource.BookControllerTest    : The following profiles are active: test
+2021-01-30 10:41:06.363  INFO 10576 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-01-30 10:41:06.733  INFO 10864 --- [main] c.c.l.api.resource.BookControllerTest    : Starting BookControllerTest using Java 14.0.2 on DESKTOP-RIFNJPK with PID 10864 (started by Pc in C:\projetos\library-api)
+2021-01-30 10:41:06.735  INFO 10864 --- [main] c.c.l.api.resource.BookControllerTest    : The following profiles are active: test
+2021-01-30 10:41:07.553  INFO 10576 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2021-01-30 10:41:07.554  INFO 10576 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2021-01-30 10:41:07.557  INFO 10576 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 2 ms
+2021-01-30 10:41:07.899  INFO 10576 --- [main] c.c.l.api.resource.BookControllerTest    : Started BookControllerTest in 8.636 seconds (JVM running for 11.663)
+2021-01-30 10:41:09.354  INFO 10576 --- [main] c.c.l.api.resource.BookController        :  creating a book for isbn 001
+2021-01-30 10:41:09.616  INFO 10576 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-01-30 10:41:12.249  INFO 10864 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-01-30 10:41:12.954  INFO 10864 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2021-01-30 10:41:12.955  INFO 10864 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2021-01-30 10:41:12.958  INFO 10864 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 2 ms
+2021-01-30 10:41:13.041  INFO 10864 --- [main] c.c.l.api.resource.BookControllerTest    : Started BookControllerTest in 7.728 seconds (JVM running for 12.031)
+2021-01-30 10:41:13.689  INFO 10864 --- [main] c.c.l.api.resource.BookController        :  creating a book for isbn 001
+2021-01-30 10:41:13.825  INFO 10864 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-01-30 10:43:34.551  INFO 10208 --- [main] c.c.l.api.resource.BookControllerTest    : Starting BookControllerTest using Java 14.0.2 on DESKTOP-RIFNJPK with PID 10208 (started by Pc in C:\projetos\library-api)
+2021-01-30 10:43:34.553  INFO 10208 --- [main] c.c.l.api.resource.BookControllerTest    : The following profiles are active: test
+2021-01-30 10:43:38.837  INFO 10208 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-01-30 10:43:39.720  INFO 10208 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2021-01-30 10:43:39.723  INFO 10208 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2021-01-30 10:43:39.726  INFO 10208 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 2 ms
+2021-01-30 10:43:39.852  INFO 10208 --- [main] c.c.l.api.resource.BookControllerTest    : Started BookControllerTest in 6.517 seconds (JVM running for 10.809)
+2021-01-30 10:43:40.806  INFO 10208 --- [main] c.c.l.api.resource.BookController        :  creating a book for isbn 001
+2021-01-30 10:43:41.033  INFO 10208 --- [main] c.c.l.api.resource.BookController        :  updating book of id 1
+2021-01-30 10:43:41.162  INFO 10208 --- [main] c.c.l.api.resource.BookController        :  obtaining details for book 1
+2021-01-30 10:43:41.204  INFO 10208 --- [main] c.c.l.api.resource.BookController        :  updating book of id 1
+2021-01-30 10:43:41.225  INFO 10208 --- [main] c.c.l.api.resource.BookController        :  creating a book for isbn 001
+2021-01-30 10:43:41.253  INFO 10208 --- [main] c.c.l.api.resource.BookController        :  deleting book of id 1
+2021-01-30 10:43:41.280  INFO 10208 --- [main] c.c.l.api.resource.BookController        :  obtaining details for book 1
+2021-01-30 10:43:41.368  INFO 10208 --- [main] c.c.l.api.resource.BookController        :  deleting book of id 1
+2021-01-30 10:43:41.403  INFO 10208 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-01-30 10:44:05.899  INFO 10600 --- [main] c.c.l.api.resource.LoanControllerTest    : Starting LoanControllerTest using Java 14.0.2 on DESKTOP-RIFNJPK with PID 10600 (started by Pc in C:\projetos\library-api)
+2021-01-30 10:44:05.901  INFO 10600 --- [main] c.c.l.api.resource.LoanControllerTest    : The following profiles are active: test
+2021-01-30 10:44:09.685  INFO 10600 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-01-30 10:44:10.458  INFO 10600 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2021-01-30 10:44:10.462  INFO 10600 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2021-01-30 10:44:10.475  INFO 10600 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 7 ms
+2021-01-30 10:44:10.593  INFO 10600 --- [main] c.c.l.api.resource.LoanControllerTest    : Started LoanControllerTest in 5.621 seconds (JVM running for 10.74)
+2021-01-30 10:44:11.367  INFO 10600 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
